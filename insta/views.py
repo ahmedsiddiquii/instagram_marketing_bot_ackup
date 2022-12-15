@@ -5,17 +5,18 @@ from .models import *
 from django.contrib import messages,auth
 from django.template import loader
 from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth.decorators import login_required
+
 
 # Create your views here.
 
 def login(request):
-
    # return render(request, "index.html")
    return render(request, "index.html")   
 
 def home(request):
    return render(request,'home.html')
-
+@login_required(login_url='/login')
 def comment(request):
    return render(request,'comment.html')
 
