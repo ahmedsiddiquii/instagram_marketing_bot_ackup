@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Home</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="../static/images/icons/favicon.ico" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="../static/vendor/bootstrap/css/bootstrap.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="../static/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="../static/fonts/iconic/css/material-design-iconic-font.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="../static/vendor/animate/animate.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="../static/vendor/css-hamburgers/hamburgers.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="../static/vendor/animsition/css/animsition.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="../static/vendor/select2/select2.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="../static/vendor/daterangepicker/daterangepicker.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="../static/css/util.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/main.css">
+    <!--===============================================================================================-->
+</head>
+<nav class="navbar">
+    <div class="container-fluid">
+        <p class="navbar-brand">
+            Welcome Ahmed
+        </p>
+    </div>
+</nav>
+
+<body>
+
+    <div class="main">
+    <div class="input-tag">
+        <h2>Select Work Time</h2>
+        <div class="hom"> 
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1"><strong> From </strong></span>
+                <input type="text" class="form-control" aria-label="from" aria-describedby="basic-addon1">
+            
+                <span style="margin-left: 8%;" class="input-group-text" id="basic-addon1"><strong> To </strong></span>
+                <input type="text" class="form-control" aria-label="To" aria-describedby="basic-addon1">
+            </div>
+        </div>
+        <h2>Add Accounts</h2>
+        <div class="user-account">
+            
+                <!-- dropdoen shayed -->
+            <ul class="list-group">
+                <li class="list-group-item"></li>
+                <li class="list-group-item"></li>
+                <li class="list-group-item"></li>
+                <li class="list-group-item"></li>
+                <li class="list-group-item"></li>
+                </ul>
+            <form action=" {%url 'save_username'%} " method="post">
+                {% csrf_token %}
+            <div class="" style="padding-top: 4%;">
+                <span class="input-group-text" id="basic-addon1"><strong> Username</strong></span>
+                <input  type="text" class="form-control"name="username" aria-label="from" aria-describedby="basic-addon1">
+                <button  type="submit" class="btn btn-primary">Add</button>
+            </div>
+        </form>
+            
+        </div>
+
+        <button style="margin-left:60%;" type="button" class="btn btn-primary" onclick="window.location.href = 'comment.html'">Next</button>
+
+    </div>
+</div>
+
+    <!--===============================================================================================-->
+    <script src="../static/vendor/jquery/jquery-3.2.1.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="../static/vendor/animsition/js/animsition.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="../static/vendor/bootstrap/js/popper.js"></script>
+    <script src="../static/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="../static/vendor/select2/select2.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="../static/vendor/daterangepicker/moment.min.js"></script>
+    <script src="../static/vendor/daterangepicker/daterangepicker.js"></script>
+    <!--===============================================================================================-->
+    <script src="../static/vendor/countdowntime/countdowntime.js"></script>
+    <!--===============================================================================================-->
+    <script src="../static/js/main.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>Home</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!--===============================================================================================-->
+	<link rel="icon" type="image/png" href="../static/images/icons/favicon.ico" />
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="../static/vendor/bootstrap/css/bootstrap.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="../static/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="../static/fonts/iconic/css/material-design-iconic-font.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="../static/vendor/animate/animate.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="../static/vendor/css-hamburgers/hamburgers.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="../static/vendor/animsition/css/animsition.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="../static/vendor/select2/select2.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="../static/vendor/daterangepicker/daterangepicker.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="../static/css/util.css">
+	<link rel="stylesheet" type="text/css" href="../static/css/main.css">
+	<!--===============================================================================================-->
+</head>
+
+<body>
+
+	<nav class="navbar">
+		<div class="container-fluid">
+			<p class="navbar-brand">
+				Welcome Ahmed
+			</p>
+			<p class="navbar-brand"style="right: auto;">logout</p>
+		</div>
+	</nav>
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100">
+				<form class="login100-form validate-form" action=" {%url 'save_username'%} " method="post">
+                    <h3 style="margin-bottom: 10px;">Select Work Time</h3>
+					{% csrf_token %}
+					
+					
+                    <div class="wrap-input100 " >
+						<input class="input100" type="text" name="from">
+						<span class="focus-input100" data-placeholder="From"></span>
+					</div>
+                    <div class="wrap-input100 " >
+						<input class="input100" type="text" name="to">
+						<span class="focus-input100" data-placeholder="To"></span>
+					</div>
+                    <h3>Add Accounts</h3>
+                    <div>
+                        <ul class="list-group">
+                            <li class="list-group-item"></li>
+                            <li class="list-group-item"></li>
+                            <li class="list-group-item"></li>
+                            <li class="list-group-item"></li>
+                            <li class="list-group-item"></li>
+                            </ul>
+                            </div>
+					
+					<div class="wrap-input100 " style="margin-top: 12px;">
+						<input class="input100" type="text" name="username">
+						<span class="focus-input100" data-placeholder="Username"></span>
+					</div>
+
+					
+					<div class="container-login100-form-btn">
+						<div class="wrap-login100-form-btn">
+							<div class="login100-form-bgbtn"></div>
+							<button class="login100-form-btn" type="submit" onclick = "buzz()">Add</button>
+
+							
+
+
+						</div>
+					</div>
+                    <button style="margin-left:70%; margin-top: 8px;" type="button" class="btn btn-primary" onclick="location.href='{% url 'comment' %}'" >Next</button>
+				</form>
+				
+			</div>
+		</div>
+	</div>
+
+	<script>
+		function buzz(){
+		alert("Your Record has been Added!");
+	}
+	  </script>
+	<!--===============================================================================================-->
+	<script src="../static/vendor/jquery/jquery-3.2.1.min.js"></script>
+	<!--===============================================================================================-->
+	<script src="../static/vendor/animsition/js/animsition.min.js"></script>
+	<!--===============================================================================================-->
+	<script src="../static/vendor/bootstrap/js/popper.js"></script>
+	<script src="../static/vendor/bootstrap/js/bootstrap.min.js"></script>
+	<!--===============================================================================================-->
+	<script src="../static/vendor/select2/select2.min.js"></script>
+	<!--===============================================================================================-->
+	<script src="../static/vendor/daterangepicker/moment.min.js"></script>
+	<script src="../static/vendor/daterangepicker/daterangepicker.js"></script>
+	<!--===============================================================================================-->
+	<script src="../static/vendor/countdowntime/countdowntime.js"></script>
+	<!--===============================================================================================-->
+	<script src="../static/js/main.js"></script>
+
+</body>
+
+</html>
