@@ -6,9 +6,13 @@ from django.contrib import messages,auth
 from django.template import loader
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
-
+from django.contrib.auth import logout
+from django.shortcuts import redirect
 
 # Create your views here.
+def logout_view(request):
+    logout(request)
+    return redirect('index.html')
 
 def login(request):
    # return render(request, "index.html")
@@ -19,13 +23,13 @@ def home(request):
 @login_required(login_url='/login')
 def comment(request):
    return render(request,'comment.html')
-
+@login_required(login_url='/login')
 def payment_paypal(request):
    return render(request,'payment_paypal.html')
-
+@login_required(login_url='/login')
 def payment(request):
    return render(request,'payment.html')
-
+@login_required(login_url='/login')
 @csrf_exempt
 def login_user(request):
    print("run")
