@@ -28,7 +28,7 @@
 	<link rel="stylesheet" type="text/css" href="../static/css/main.css">
 	<!--===============================================================================================-->
 </head>
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <body>
 
 	<nav class="navbar">
@@ -37,7 +37,8 @@
 				Welcome Ahmed
 			</p>
 				<li>
-					<a style="color:rgb(168, 163, 163);" class="dropdown-item" href="{% url 'logout_view' %}">Log out</a>
+					<!-- <a style="color:rgb(168, 163, 163);" class="dropdown-item" href="{% url 'logout_view' %}"><img src="/insta/templates/images/icons/logout.png" width="20" height="20">Log out</a> -->
+					<a href="#" class="btn btn-info btn-md"><span class="glyphicon glyphicon-log-out" href="{% url 'logout_view' %}" ></span> Log out</a>
 				</li>
 		</div>
 	</nav>
