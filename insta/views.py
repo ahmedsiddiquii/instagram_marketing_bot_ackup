@@ -7,12 +7,12 @@ from django.template import loader
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
-from django.shortcuts import redirect
+
 
 # Create your views here.
 def logout_view(request):
-    logout(request)
-    return redirect('index.html')
+   
+   return render(request,'index.html')
 
 def login(request):
    # return render(request, "index.html")

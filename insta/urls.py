@@ -10,7 +10,7 @@ urlpatterns = [
     path('template.html',views.data_get),
     path('save_username/',views.save_username,name="save_username"),
     path('login_user/',views.login_user,name="login_user"),
-    path('log_out/',views.logout_view,name="log_out"),
+    path('logout_view/',views.logout_view,name="logout_view"),
 
         
 ]
