@@ -15,21 +15,20 @@ def logout_view(request):
    return render(request,'index.html')
 
 def login(request):
-   # return render(request, "index.html")
    return render(request, "index.html")   
 
 def home(request):
    return render(request,'home.html')
-@login_required(login_url='/login')
+@login_required(login_url='/')
 def comment(request):
    return render(request,'comment.html')
-@login_required(login_url='/login')
+@login_required(login_url='/')
 def payment_paypal(request):
    return render(request,'payment_paypal.html')
-@login_required(login_url='/login')
+@login_required(login_url='/')
 def payment(request):
    return render(request,'payment.html')
-@login_required(login_url='/login')
+@login_required(login_url='/')
 @csrf_exempt
 def login_user(request):
    print("run")
