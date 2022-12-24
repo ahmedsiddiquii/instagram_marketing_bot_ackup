@@ -34,42 +34,62 @@
 	<nav class="navbar">
 		<div class="container-fluid">
 			<p class="navbar-brand">
-				Welcome Ahmed
+				Welcome {{ user }}
 			</p>
 				<li>
-					<a style="color:rgb(168, 163, 163);" class="dropdown-item" href="#">Log out</a>
+					<form action=" {%url 'logout_user'%} " method="post">
+						{% csrf_token %}
+						<button  class="btn btn-outline-warning" type="Submit">Log out</button>
+					</form>
+
 				</li>
 		</div>
 	</nav>
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100">
-				<form class="login100-form validate-form" action=" {%url 'save_username'%} " method="post">
+				<form class="login100-form validate-form" action=" {%url 'save_time'%} " method="post">
                     <h3 style="margin-bottom: 10px;">Select Work Time</h3>
 					{% csrf_token %}
-					
-					
-                    <div class="wrap-input100 " >
-						<input class="input100" type="text" name="from">
-						<span class="focus-input100" data-placeholder="From"></span>
-					</div>
-                    <div class="wrap-input100 " >
-						<input class="input100" type="text" name="to">
-						<span class="focus-input100" data-placeholder="To"></span>
-					</div>
-                    <h3>Add Accounts</h3>
+
+						<div>
+						  <span style="margin-top: 10px;" class="input-group-text">From Time</span>
+						  <input style="margin-top: 10px;margin-bottom:10px;" type="text" class="form-control" name="from" value="{{ from_time }}" aria-describedby="inputGroup-sizing-default">
+						</div>
+
+						<div>
+						  <span style="margin-top: 10px;" class="input-group-text">To Time</span>
+						  <input style="margin-top: 10px;" type="text" class="form-control" name="to" value="{{ to_time }}" aria-describedby="inputGroup-sizing-default">
+						</div>
+
+
+						<div>
+						<button style="display: block;
+    margin: 0 auto;
+    margin-top: 10px;margin-bottom:10px;
+    text-align: center;" class="btn btn-outline-success" type="submit">Set Time</button></div>
+
+
+					</form>
+					<form class="login100-form validate-form" action=" {%url 'save_username'%} " method="post">
+						{% csrf_token %}
+                    <h3 >Add Accounts</h3>
                     <div>
-                        <ul class="list-group">
-                            <li class="list-group-item"></li>
-                            <li class="list-group-item"></li>
-                            <li class="list-group-item"></li>
-                            <li class="list-group-item"></li>
-                            <li class="list-group-item"></li>
+                        <ul style="margin-top: 10px;margin-bottom:10px;height: 200px; overflow: auto" class="list-group">
+							{% for email in emails %}
+
+                            	<li class="list-group-item">{{ email }}
+
+									<a style="float:right; margin:5px; color: white;" href="/home.html/{{email}}/" class="btn btn-danger btn-sm" >Delete</a>
+
+								</li>
+							{% endfor %}
+
                             </ul>
                             </div>
 					
 					<div class="wrap-input100 " style="margin-top: 12px;">
-						<input class="input100" type="text" name="username">
+						<input style="margin-top: 20px;margin-bottom:10px;" class="input100" type="text" name="username">
 						<span class="focus-input100" data-placeholder="Username"></span>
 					</div>
 
@@ -77,14 +97,14 @@
 					<div class="container-login100-form-btn">
 						<div class="wrap-login100-form-btn">
 							<div class="login100-form-bgbtn"></div>
-							<button class="login100-form-btn" type="submit" onclick = "buzz()">Add</button>
+							<button class="login100-form-btn" type="submit">Add</button>
 
 							
 
 
 						</div>
 					</div>
-                    <button style="margin-left:70%; margin-top: 8px;" type="button" class="btn btn-primary" onclick="location.href='{% url 'comment' %}'" >Next</button>
+                    <button style="margin-left:70%; margin-top: 20px;" type="button" class="btn btn-primary" onclick="location.href='{% url 'comment' %}'" >Next</button>
 				</form>
 				
 			</div>

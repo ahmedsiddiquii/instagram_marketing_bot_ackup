@@ -5,10 +5,14 @@ from django.contrib.auth import authenticate
 
 
 # Create your models here.
+class Time(models.Model):
+    from_time = models.CharField(max_length=200, default=None)
+    to_time = models.CharField(max_length=200, default=None)
+    user_email = models.CharField(max_length=200, default=None)
+
 class Details(models.Model):
     user_email = models.CharField(max_length=200 ,default=None )
-    from_time=models.CharField(max_length=200,default=None )
-    to_time=models.CharField(max_length=200 ,default=None )
+
     account=models.CharField(max_length=200 ,default=None )
    
 class Comments(models.Model):

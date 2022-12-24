@@ -6,6 +6,8 @@ from django.contrib import messages,auth
 from django.template import loader
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
+from django.shortcuts import redirect
+
 
 
 # Create your views here.
@@ -14,17 +16,41 @@ def login(request):
    # return render(request, "index.html")
    return render(request, "index.html")   
 
+@login_required(login_url='/')
 def home(request):
-   return render(request,'home.html')
-@login_required(login_url='/login')
-def comment(request):
-   return render(request,'comment.html')
+   obj=Details.objects.filter(user_email=request.user).values_list("account")
+   obj=list(obj)
+   for i in range(len(obj)):
+      obj[i]=obj[i][0]
+
+   time_obj=Time.objects.filter(user_email=request.user).values()
+   if len(list(time_obj))>=1:
+      time_obj=list(time_obj)[0]
+      from_time=time_obj['from_time']
+      to_time=time_obj['to_time']
+      context={"emails":list(obj),"from_time":from_time,"to_time":to_time,"user":str(request.user).capitalize()}
+   else:
+      context = {"emails": list(obj),'user':str(request.user).capitalize()}
+   print("home")
+   return render(request,'home.html',context)
+@login_required(login_url='/')
+def comment_view(request):
+   obj=Comments.objects.filter(user_email=request.user).all().values()
+
+   return render(request,'comment.html',{'comments':list(obj)})
 
 def payment_paypal(request):
    return render(request,'payment_paypal.html')
 
 def payment(request):
    return render(request,'payment.html')
+
+
+def logout_user(request):
+   print("logout")
+   if request.method == 'POST':
+      auth.logout(request)
+   return redirect(login)
 
 @csrf_exempt
 def login_user(request):
@@ -37,16 +63,17 @@ def login_user(request):
          if user.is_active:
             auth.login(request, user)
          
-         return render(request,'home.html')
+         return redirect(home)
       else:
          # messages.error(request,'Invalid')
-         return render(request,'login')
+         return redirect(login)
    else:
-      return render(request, 'account/index.html')
+      return redirect(home)
 
 def save_commentt(request):
-   print("Saving comment")
+
    if request.method=="POST":
+      print("Saving comment")
       name=request.POST.get('comment')
       current_user = request.user
       print(current_user.id)
@@ -54,21 +81,33 @@ def save_commentt(request):
       ab=Comments(comment=name,user_email=current_user)
       print(ab)
       ab.save()
-   return render(request, "comment.html")
+   return comment_view(request)
 
+
+def save_time(request):
+   if request.method=="POST":
+      Time.objects.filter(user_email=request.user).delete()
+      current_user = request.user
+      print(current_user.id)
+      from_time=request.POST.get('from')
+      to_time=request.POST.get('to')
+      # account=request.POST.get('')
+
+      en=Time(user_email=current_user,from_time=from_time,to_time=to_time)
+      en.save()
+      return redirect(home)
 def save_username(request):
    if request.method=="POST":
       current_user = request.user
       print(current_user.id)
       name=request.POST.get('username')
-      from_time=request.POST.get('from')
-      to_time=request.POST.get('to')
+
       # account=request.POST.get('')
       print(name)
-      en=Details(user_email=name,from_time=from_time,to_time=to_time,account=current_user)
+      en=Details(user_email=current_user,account=name)
       print(en)
       en.save()
-   return render(request, "home.html")
+   return redirect(home)
 
 def data_get(request):
    data=Details.objects.all().values()
@@ -76,3 +115,15 @@ def data_get(request):
    template=loader.get_template('template.html')
    context={'mymembers':data}
    return HttpResponse(template.render(context,request))
+
+def delete_username(request,username=None):
+   print(request.method)
+   print(username)
+   Details.objects.filter(account=username,user_email=request.user).delete()
+   return redirect(home)
+
+def delete_comment(request,comment=None):
+   print(request.method)
+   print(comment)
+   Comments.objects.filter(user_email=request.user,comment=comment).delete()
+   return redirect(comment_view)

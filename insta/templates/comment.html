@@ -37,7 +37,10 @@
 				Welcome Ahmed
 			</p>
 			<li>
-				<a style="color:rgb(168, 163, 163);" class="dropdown-item" href="#">Log out</a>
+				<form action=" {%url 'logout_user'%} " method="post">
+						{% csrf_token %}
+						<button  class="btn btn-outline-warning" type="Submit">Log out</button>
+					</form>
 			</li>
 
 		</div>
@@ -49,14 +52,18 @@
                     <h3>Add Comments</h3>
 					{% csrf_token %}
                     <div>
-                        <ul class="list-group">
-                            <li class="list-group-item"></li>
-                            <li class="list-group-item"></li>
-                            <li class="list-group-item"></li>
-                            <li class="list-group-item"></li>
-                            <li class="list-group-item"></li>
-                            </ul>
-                            </div>
+                        <ul style="margin-top: 10px;margin-bottom:10px;height: 200px; overflow: auto" class="list-group">
+							{% for comment in comments %}
+
+                            	<li class="list-group-item">{{ comment.comment }}
+
+									<a style="float:right; margin:5px; color: white;" href="/comment.html/{{comment.comment}}/" class="btn btn-danger btn-sm" >Delete</a>
+
+								</li>
+							{% endfor %}
+
+						</ul>
+					</div>
                         <h3 style="margin: 14px;">Type Here</h3>
 					
                     <div class="wrap-input100 " >
