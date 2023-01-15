@@ -14,6 +14,8 @@ path('comment.html/',views.comment_view,name="comment"),
 path('save_time/',views.save_time,name="save_time"),
     path('login_user/',views.login_user,name="login_user"),
     path('logout_user/',views.logout_user,name="logout_user"),
+    path('status',views.status_page,name="status"),
+path('save_insta',views.save_insta,name="save_insta"),
 
         
 ]

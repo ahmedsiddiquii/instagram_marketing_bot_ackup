@@ -44,10 +44,34 @@
     <div class="limiter">
         <div class="container-login100">
             <div class="wrap-login100">
+
                 <form class="login100-form validate-form" action="" method="post">
                     {% csrf_token %}
-                    <h2>Waiting for your <br> Payment......</h2>
-                    <h4 class="pay" style="margin-top: 20px;"> <b> After Payment </b></h4>
+                    <h2>Your Bot Is <br> {{ status }}</h2>
+
+                    <form class="login100-form validate-form" action=" {%url 'save_insta'%} " method="post">
+                    <h3 style="margin-bottom: 10px;">Your Instagram Account</h3>
+					{% csrf_token %}
+
+						<div>
+						  <span style="margin-top: 10px;" class="input-group-text">Username</span>
+						  <input style="margin-top: 10px;margin-bottom:10px;" type="text" class="form-control" name="insta_id" value="{{ insta_id }}" aria-describedby="inputGroup-sizing-default">
+						</div>
+
+						<div>
+						  <span style="margin-top: 10px;" class="input-group-text">Password</span>
+						  <input style="margin-top: 10px;" type="text" class="form-control" name="insta_pass" value="{{ insta_pass }}" aria-describedby="inputGroup-sizing-default">
+						</div>
+
+
+						<div>
+						<button style="display: block;
+    margin: 0 auto;
+    margin-top: 10px;margin-bottom:10px;
+    text-align: center;" class="btn btn-outline-success" type="submit">Save</button></div>
+
+
+					</form>
 
                     <button type="button" class="btn btn-success" style="margin: 20px;">start</button>
                     <button type="button" class="btn btn-danger" style="margin: 20px;">stop</button> <br>

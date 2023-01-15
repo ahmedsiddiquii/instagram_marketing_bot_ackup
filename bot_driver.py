@@ -15,6 +15,8 @@ def main2():
     obj2=Details.objects.all().values()
     for j in list(obj2):
         print(j)
+    obj = Setting.objects.filter(username="admin").values()[0]
+    print(obj)
 if __name__ == "__main__":
     main2()
 

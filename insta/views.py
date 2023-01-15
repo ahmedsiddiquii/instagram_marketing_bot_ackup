@@ -33,6 +33,31 @@ def home(request):
       context = {"emails": list(obj),'user':str(request.user).capitalize()}
    print("home")
    return render(request,'home.html',context)
+
+@login_required(login_url='/')
+def status_page(request):
+   try:
+      obj = Setting.objects.filter(username=request.user).values()[0]
+      status= obj['status']
+      insta_user=obj['insta_id']
+      insta_password=obj["insta_pass"]
+      context={"status":status,"insta_id":insta_user,"insta_pass":insta_password}
+   except:
+      context={"status":"Off","insta_id":"","insta_pass":""}
+
+   return render(request,'status.html',context)
+
+@login_required(login_url='/')
+def save_insta(request):
+   if request.method=="POST":
+      insta_username=request.POST['insta_id']
+      insta_password=request.POST['insta_pass']
+      obj=Setting.objects.get(username=request.user)
+      obj.insta_id=insta_username
+      obj.insta_pass=insta_password
+      obj.save()
+   return redirect(status_page)
+
 @login_required(login_url='/')
 def comment_view(request):
    obj=Comments.objects.filter(user_email=request.user).all().values()
