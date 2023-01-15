@@ -10,6 +10,12 @@ class Time(models.Model):
     to_time = models.CharField(max_length=200, default=None)
     user_email = models.CharField(max_length=200, default=None)
 
+class Setting(models.Model):
+    username = models.CharField(max_length=200, default=None)
+    insta_id = models.CharField(max_length=200, default=None)
+    insta_pass = models.CharField(max_length=200, default=None)
+    status = models.CharField(max_length=200, default="off")
+
 class Details(models.Model):
     user_email = models.CharField(max_length=200 ,default=None )
 
